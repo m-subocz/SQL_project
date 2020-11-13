@@ -1,0 +1,27 @@
+lab 04
+
+ZAD 1.
+
+a. DELETE FROM postac WHERE id_postaci=6;
+   DELETE FROM postac WHERE id_postaci=3;
+
+b.  ALTER TABLE walizka DROP FOREIGN KEY walizka_ibfk_1;
+    ALTER TABLE przetwory DROP FOREIGN KEY przetwory_ibfk_1;
+    ALTER TABLE przetwory DROP FOREIGN KEY przetwory_ibfk_2;
+    ALTER TABLE postac DROP PRIMARY KEY, CHANGE id_postaci id_postaci int(2);
+
+ZAD 2.
+
+a. ALTER TABLE postac ADD COLUMN `PESEL` varchar(11) NOT NULL FIRST;
+   UPDATE postac SET PESEL=00000000001 WHERE id_postaci=1; <- aktualizacja kazdego
+   ALTER TABLE postac ADD PRIMARY KEY(PESEL);
+
+b. ALTER TABLE postac MODIFY rodzaj enum('wiking','ptak','kobieta','syrena') DEFAULT 'wiking';
+
+c. INSERT INTO postac VALUES ('10','9','Gertuda Nieszczera','syrena','1240-12-01','200','brak',NULL);
+
+ZAD 3.
+
+a. UPDATE postac SET statek='Rzeczna zmora' WHERE nazwa LIKE '%a%';
+
+b. UPDATE statki SET max_ladownosc=max_ladownosc*0.7 WHERE data_wykonania BETWEEN '1901-01-01' AND '2000-12-31';
