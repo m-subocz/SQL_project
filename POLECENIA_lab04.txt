@@ -25,3 +25,21 @@ ZAD 3.
 a. UPDATE postac SET statek='Rzeczna zmora' WHERE nazwa LIKE '%a%';
 
 b. UPDATE statki SET max_ladownosc=max_ladownosc*0.7 WHERE data_wykonania BETWEEN '1901-01-01' AND '2000-12-31';
+
+ZAD 4.
+
+a. ALTER TABLE postac MODIFY rodzaj enum('wiking','ptak','kobieta','syrena','waz') default 'wiking';
+   insert into postac values ('11111111111','9','Loko','waz','1462-06-09','4','brak','brak');
+
+b/c. CREATE TABLE marynarze LIKE postac;
+     INSERT INTO marynarze SELECT * FROM postac WHERE statek NOT LIKE 'brak';
+     CREATE TABLE marynarze2 SELECT * FROM postac;
+
+ZAD 5.
+
+a. UPDATE postac SET statek='NULL';
+b. DELETE FROM postac WHERE nazwa='Odvall';
+c. DELETE FROM statki;
+d. DROP TABLE statki;
+e. CREATE TABLE zierz (id int AUTO_INCREMENT PRIMARY KEY,nazwa varchar(30),wiek int);
+f. INSERT INTO zierz SELECT id_postaci,nazwa,wiek FROM postac WHERE rodzaj='ptak' OR rodzaj='waz';
