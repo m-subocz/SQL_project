@@ -1,0 +1,23 @@
+ZAD 1.
+
+a. SELECT AVG(waga) FROM wikingowie.kreatura WHERE rodzaj LIKE 'wiking';
+
+b. SELECT rodzaj,AVG(waga),COUNT(*) FROM wikingowie.kreatura GROUP BY rodzaj;
+
+c. SELECT rodzaj, avg(2020-year(dataUr)) FROM kreatura GROUP BY rodzaj;
+
+ZAD 2.
+
+a. SELECT SUM waga FROM zasob GROUP BY rodzaj;
+
+b. SELECT nazwa,AVG(waga) FROM zasob WHERE ilosc >= 4 GROUP BY nazwa HAVING SUM(waga)>10;
+
+c. SELECT rodzaj,COUNT(DISTINCT(nazwa)) AS liczba FROM zasob GROUP BY rodzaj HAVING liczba>1;
+
+ZAD 3.
+
+a. SELECT nazwa FROM kreatury,ekwipunek WHERE kreatury.idKreatury=ekwipunek.idKreatury;
+
+b. SELECT k.nazwa,e.idZasobu,e.ilosc,z.nazwa FROM kreatura k,ekwipunek e,zasob z WHERE k.idKreatury=e.idKreatury AND e.idZasobu=z.idZasobu;
+
+c. SELECT ...
