@@ -1,0 +1,24 @@
+ZAD 1.
+
+a. SELECT w.nazwa, SUM(e.ilosc) FROM wyprawa w, ekwipunek e, kreatura k, uczestnicy u, zasob z WHERE e.idKreatury=k.idKreatury AND u.id_wyprawy=w.id_wyprawy AND u.id_uczestnika=k.idKreatury AND e.idZasobu=z.idZasobu GROUP BY w.nazwa;
+b. SELECT idKreatury, GROUP_CONCAT(idZasobu separator '') FROM ekwipunek GROUP BY idKreatury;
+c. 
+
+ZAD 2.
+
+a. 
+b. SELECT e.idEtapu, s.nazwa AS "nazwa sektora", k.nazwa AS "nazwa kierownika" FROM etapy_wyprawy e, sektor s, wyprawa w,kreatura k WHERE w.kierownik=k.idKreatury AND w.id_wyprawy=e.idWyprawy AND e.sektor=s.id_sektora ORDER BY w.data_rozpoczecia, e.kolejnosc;
+
+ZAD 3.
+
+a. SELECT s.nazwa,count(e.sektor) from sektor s left join etapy_wyprawy e on s.id_sektora=e.sektor GROUP BY s.nazwa;
+b. SELECT distinct k.nazwa, if(u.id_uczestnika IS NULL, 'nie brał udziału w wyprawie', 'brał udział w wyprawie') FROM kreatura k LEFT JOIN uczestnicy u ON u.id_uczestnika=idKreatury;
+
+ZAD 4.
+ 
+a. SELECT w.nazwa, SUM(LENGTH(e.dziennik)) AS znaki FROM wyprawa w JOIN etapy_wyprawy e ON w.id_wyprawy = e.idWyprawy GROUP BY w.nazwa HAVING znaki < 400;
+b. SELECT w.nazwa AS "wyprawa", SUM(z.waga*e.ilosc)/COUNT(u.id_uczestnika) FROM kreatura k, zasob z, wyprawa w, uczestnicy u, ekwipunek e WHERE z.idZasobu=e.idZasobu AND k.idKreatury=e.idKreatury AND u.id_uczestnika=k.idKreatury AND u.id_wyprawy=w.id_wyprawy GROUP BY w.nazwa;
+
+ZAD 5.
+
+a. SELECT k.nazwa,dataUr, datediff(k.dataUr, now()) FROM kreatura k;
